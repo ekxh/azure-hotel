@@ -1,0 +1,645 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure Boutique Hotel | Luxury by the Sea</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: #263238;
+            background: #f8f7f3;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 7%;
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            letter-spacing: 4px;
+            color: #163b43;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #263238;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #c19b5b;
+        }
+
+        .menu-button {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 25px;
+            color: #163b43;
+            cursor: pointer;
+        }
+
+        .hero {
+            min-height: 620px;
+            background:
+                linear-gradient(rgba(0,0,0,0.38), rgba(0,0,0,0.45)),
+                url("https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=2000&q=85");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .hero .eyebrow {
+            letter-spacing: 5px;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(42px, 7vw, 76px);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 17px;
+            margin-bottom: 32px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #c19b5b;
+            color: #163b43;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 3px;
+            text-decoration: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background: #dfc28b;
+            transform: translateY(-2px);
+        }
+
+        section {
+            scroll-margin-top: 80px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-heading span {
+            color: #b28c50;
+            letter-spacing: 4px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .section-heading h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            color: #163b43;
+            margin: 12px 0;
+        }
+
+        .section-heading p {
+            color: #777;
+        }
+
+        .rooms-section {
+            padding: 90px 7%;
+        }
+
+        .rooms {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .room {
+            background: white;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .room:hover {
+            transform: translateY(-7px);
+        }
+
+        .room img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+        }
+
+        .room-info {
+            padding: 25px;
+        }
+
+        .room-info h3 {
+            font-family: 'Playfair Display', serif;
+            color: #163b43;
+            font-size: 23px;
+            margin-bottom: 10px;
+        }
+
+        .room-info p {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            color: #b28c50;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .amenities {
+            background: #163b43;
+            color: white;
+            padding: 85px 7%;
+            text-align: center;
+        }
+
+        .amenities h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            margin-bottom: 45px;
+        }
+
+        .amenity-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .amenity {
+            padding: 15px;
+        }
+
+        .amenity .symbol {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .amenity h3 {
+            margin-bottom: 10px;
+        }
+
+        .amenity p {
+            color: #c8d3d3;
+            font-size: 13px;
+        }
+
+        .reviews {
+            padding: 90px 7%;
+            text-align: center;
+        }
+
+        .review-card {
+            background: white;
+            max-width: 700px;
+            margin: auto;
+            padding: 40px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+        }
+
+        .stars {
+            color: #c19b5b;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        .review-card p {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            line-height: 1.6;
+            color: #163b43;
+            margin-bottom: 20px;
+        }
+
+        .review-card small {
+            color: #888;
+        }
+
+        .booking {
+            background: #eeece5;
+            padding: 90px 7%;
+        }
+
+        .booking-form {
+            max-width: 750px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #163b43;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 13px;
+            border: 1px solid #ddd;
+            font-family: inherit;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .booking-form button {
+            grid-column: 1 / -1;
+        }
+
+        .contact {
+            background: #163b43;
+            color: white;
+            text-align: center;
+            padding: 70px 20px;
+        }
+
+        .contact h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .contact p {
+            color: #d4dddd;
+            margin-bottom: 25px;
+        }
+
+        footer {
+            background: #102d33;
+            color: #c8d3d3;
+            text-align: center;
+            padding: 25px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 850px) {
+            .rooms {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .amenity-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 16px 5%;
+            }
+
+            .menu-button {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 25px;
+                gap: 20px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .hero {
+                min-height: 520px;
+            }
+
+            .rooms {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-form {
+                grid-template-columns: 1fr;
+                padding: 25px;
+            }
+
+            .form-group.full,
+            .booking-form button {
+                grid-column: auto;
+            }
+
+            .section-heading h2,
+            .amenities h2 {
+                font-size: 30px;
+            }
+
+            .contact h2 {
+                font-size: 29px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">AZURE</div>
+
+        <button class="menu-button" id="menuButton" aria-label="Open navigation">
+            ☰
+        </button>
+
+        <div class="nav-links" id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#rooms">Rooms</a>
+            <a href="#amenities">Amenities</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#booking">Book Now</a>
+        </div>
+    </nav>
+
+    <header class="hero" id="home">
+        <p class="eyebrow">WELCOME TO AZURE</p>
+        <h1>Escape to the Extraordinary</h1>
+        <p>Experience luxury, comfort and unforgettable seaside views.</p>
+        <a href="#booking" class="button">Discover Your Stay</a>
+    </header>
+
+    <main>
+
+        <section class="rooms-section" id="rooms">
+            <div class="section-heading">
+                <span>ACCOMMODATION</span>
+                <h2>Discover Our Rooms</h2>
+                <p>Find the perfect space for your next getaway.</p>
+            </div>
+
+            <div class="rooms">
+
+                <article class="room">
+                    <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=900&q=80" alt="Deluxe hotel room">
+                    <div class="room-info">
+                        <h3>Deluxe Room</h3>
+                        <p>A comfortable retreat with elegant interiors and beautiful details.</p>
+                        <span class="price">€120 / night</span>
+                    </div>
+                </article>
+
+                <article class="room">
+                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=80" alt="Luxury hotel suite">
+                    <div class="room-info">
+                        <h3>Luxury Suite</h3>
+                        <p>Spacious accommodation designed for a truly relaxing experience.</p>
+                        <span class="price">€180 / night</span>
+                    </div>
+                </article>
+
+                <article class="room">
+                    <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=900&q=80" alt="Premium hotel accommodation">
+                    <div class="room-info">
+                        <h3>Ocean Suite</h3>
+                        <p>Enjoy premium comfort and an atmosphere inspired by the sea.</p>
+                        <span class="price">€240 / night</span>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="amenities" id="amenities">
+            <h2>Experience More</h2>
+
+            <div class="amenity-grid">
+                <div class="amenity">
+                    <div class="symbol">🌊</div>
+                    <h3>Sea Views</h3>
+                    <p>Beautiful surroundings and coastal scenery.</p>
+                </div>
+
+                <div class="amenity">
+                    <div class="symbol">🏊</div>
+                    <h3>Swimming Pool</h3>
+                    <p>Relax and unwind beside the water.</p>
+                </div>
+
+                <div class="amenity">
+                    <div class="symbol">🍽️</div>
+                    <h3>Fine Dining</h3>
+                    <p>Enjoy memorable dining experiences.</p>
+                </div>
+
+                <div class="amenity">
+                    <div class="symbol">🧖</div>
+                    <h3>Wellness</h3>
+                    <p>Take time for yourself and recharge.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reviews" id="reviews">
+            <div class="section-heading">
+                <span>GUEST EXPERIENCES</span>
+                <h2>What Our Guests Say</h2>
+            </div>
+
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p>"An incredible experience. Beautiful rooms, wonderful service and an atmosphere we will never forget."</p>
+                <small>— A Happy Guest</small>
+            </div>
+        </section>
+
+        <section class="booking" id="booking">
+            <div class="section-heading">
+                <span>PLAN YOUR STAY</span>
+                <h2>Make an Inquiry</h2>
+                <p>Tell us about your stay and we'll get back to you.</p>
+            </div>
+
+            <form class="booking-form" id="bookingForm">
+
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="Your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="Your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="checkin">Check-in Date</label>
+                    <input type="date" id="checkin" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="checkout">Check-out Date</label>
+                    <input type="date" id="checkout" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="guests">Number of Guests</label>
+                    <select id="guests">
+                        <option>1 Guest</option>
+                        <option selected>2 Guests</option>
+                        <option>3 Guests</option>
+                        <option>4 Guests</option>
+                        <option>5+ Guests</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="room">Preferred Room</label>
+                    <select id="room">
+                        <option>Deluxe Room</option>
+                        <option>Luxury Suite</option>
+                        <option>Ocean Suite</option>
+                    </select>
+                </div>
+
+                <div class="form-group full">
+                    <label for="message">Additional Message</label>
+                    <textarea id="message" placeholder="Tell us anything else we should know..."></textarea>
+                </div>
+
+                <button type="submit" class="button">Send Booking Inquiry</button>
+
+            </form>
+        </section>
+
+    </main>
+
+    <section class="contact" id="contact">
+        <h2>Ready for Your Next Getaway?</h2>
+        <p>We look forward to welcoming you to Azure Boutique Hotel.</p>
+        <a href="mailto:hello@azurehotel.com" class="button">Contact Us</a>
+    </section>
+
+    <footer>
+        <p>© 2026 Azure Boutique Hotel. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const menuButton = document.getElementById("menuButton");
+        const navLinks = document.getElementById("navLinks");
+
+        menuButton.addEventListener("click", function() {
+            navLinks.classList.toggle("open");
+        });
+
+        document.querySelectorAll(".nav-links a").forEach(function(link) {
+            link.addEventListener("click", function() {
+                navLinks.classList.remove("open");
+            });
+        });
+
+        const checkin = document.getElementById("checkin");
+        const checkout = document.getElementById("checkout");
+
+        const today = new Date().toISOString().split("T")[0];
+
+        checkin.min = today;
+        checkout.min = today;
+
+        checkin.addEventListener("change", function() {
+            checkout.min = checkin.value;
+
+            if (checkout.value && checkout.value <= checkin.value) {
+                checkout.value = "";
+            }
+        });
+
+        document.getElementById("bookingForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            if (checkout.value <= checkin.value) {
+                alert("Check-out must be after check-in.");
+                return;
+            }
+
+            const details =
+                "Hello Azure Boutique Hotel,%0D%0A%0D%0A" +
+                "Name: " + encodeURIComponent(document.getElementById("name").value) + "%0D%0A" +
+                "Email: " + encodeURIComponent(document.getElementById("email").value) + "%0D%0A" +
+                "Check-in: " + checkin.value + "%0D%0A" +
+                "Check-out: " + checkout.value + "%0D%0A" +
+                "Guests: " + encodeURIComponent(document.getElementById("guests").value) + "%0D%0A" +
+                "Room: " + encodeURIComponent(document.getElementById("room").value) + "%0D%0A" +
+                "Message: " + encodeURIComponent(document.getElementById("message").value);
+
+            window.location.href =
+                "mailto:hello@azurehotel.com?subject=Booking%20Inquiry&body=" + details;
+        });
+    </script>
+
+</body>
+</html>
